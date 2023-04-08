@@ -2,8 +2,8 @@ import { ChatInputCommand, Command } from '@sapphire/framework';
 import { ApplyOptions } from '@sapphire/decorators';
 
 @ApplyOptions<Command.Options>({
-    name: 'ping',
-    description: 'Pong?'
+	name: 'ping',
+	description: 'Pong?'
 })
 export class PingCommand extends Command {
 	public constructor(context: Command.Context, options: Command.Options) {
