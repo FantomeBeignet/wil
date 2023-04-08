@@ -13,7 +13,11 @@ export class QuoiEvent extends Listener {
 	}
 
 	public run(message: Message): Promise<Message> | null {
-		if (message.channel.id !== process.env.SERIOUS_CATEGORY && message.content.toLowerCase().includes('quoi')) {
+		if (
+			message.channel.id !== process.env.SERIOUS_CATEGORY &&
+			message.author.id !== process.env.CLIENT_ID &&
+			message.content.toLowerCase().includes('quoi')
+		) {
 			return message.reply({ content: 'feur', allowedMentions: { repliedUser: false } });
 		}
 		return null;
