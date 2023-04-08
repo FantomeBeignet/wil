@@ -16,7 +16,7 @@ export class QuoiEvent extends Listener {
 	public run(message: Message): Promise<void> | undefined | null {
 		if ((message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY && message.author.id !== process.env.CLIENT_ID) {
 			const { content } = message;
-			const words = content.toLowerCase().split('');
+			const words = content.toLowerCase().split(' ');
 			if (words.includes('ratio')) return this.react(message, 'ratio');
 			if (words.includes('cheh')) return this.react(message, 'cheh');
 			if (words.includes('titre')) return this.react(message, 'titre');
