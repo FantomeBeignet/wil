@@ -3,7 +3,7 @@ import { Listener, ListenerOptions } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
-export class UserEvent extends Listener {
+export class QuoiEvent extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {
 			...options,
