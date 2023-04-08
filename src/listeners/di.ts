@@ -40,7 +40,7 @@ export class DiEvent extends Listener {
 	public run(message: Message): Promise<Message> | null {
 		if (
 			message.channel.id !== process.env.SERIOUS_CATEGORY &&
-			message.author.id !== process.env.USER_ID &&
+			message.author.id !== process.env.CLIENT_ID &&
 			(message.content.toLowerCase().includes('di') || message.content.toLowerCase().includes('dy'))
 		) {
 			for (const w of message.content.toLowerCase().split(' ')) {
