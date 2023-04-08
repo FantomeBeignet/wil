@@ -14,7 +14,7 @@ const client = new SapphireClient({
 
 const main = async () => {
 	try {
-		const rest = new REST({ version: '1.0' }).setToken(process.env.DISCORD_TOKEN as string);
+		const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN as string);
 		rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID as string, process.env.GUILD_ID as string), { body: [] })
 			.then(() => console.log('Successfully deleted all guild commands.'))
 			.catch(console.error);
