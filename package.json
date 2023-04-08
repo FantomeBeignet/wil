@@ -1,0 +1,29 @@
+{
+	"main": "dist/index.js",
+	"dependencies": {
+		"@sapphire/framework": "^4.2.0",
+		"@sapphire/plugin-logger": "^3.0.1",
+		"colorette": "^2.0.19",
+		"discord.js": "14.x",
+		"tslib": "^2.5.0"
+	},
+	"devDependencies": {
+		"@sapphire/decorators": "^6.0.0",
+		"@sapphire/eslint-config": "^4.3.8",
+		"@sapphire/prettier-config": "^1.4.5",
+		"@sapphire/ts-config": "^3.3.4",
+		"@types/node": "^18.14.2",
+		"eslint": "^8.35.0",
+		"prettier": "^2.8.4",
+		"typescript": "^4.9.5"
+	},
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w",
+		"start": "node dist/index.js",
+		"dev": "npm run build && npm run start",
+		"watch:start": "tsc-watch --onSuccess \"npm run start\"",
+		"format": "prettier --write \"src/\"",
+		"lint": "prettier --check . && eslint src/ --ext .js,.ts"
+	}
+}
