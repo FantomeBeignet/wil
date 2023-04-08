@@ -4,14 +4,6 @@ import type { Message } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
 export class DiEvent extends Listener {
-	public constructor(context: Listener.Context, options: Listener.Options) {
-		super(context, {
-			...options,
-			once: false,
-			event: 'messageCreate'
-		});
-	}
-
 	private conjugations = [
 		'dire',
 		'dis',
@@ -37,6 +29,14 @@ export class DiEvent extends Listener {
 		'disais'
 	];
 
+	public constructor(context: Listener.Context, options: Listener.Options) {
+		super(context, {
+			...options,
+			once: false,
+			event: 'messageCreate'
+		});
+	}
+
 	public run(message: Message): Promise<Message> | null {
 		if (
 			message.channel.id !== process.env.SERIOUS_CATEGORY &&
@@ -51,7 +51,7 @@ export class DiEvent extends Listener {
 					// if word includes "di" or "dy"
 					if (!this.conjugations.includes(word)) {
 						const toReply = word.slice(index + 2);
-						if (toReply.length > 2) {
+						if (toReply.length > 2 && toReply.length < 12) {
 							return message.reply({ content: toReply, allowedMentions: { repliedUser: false } });
 						}
 					}
