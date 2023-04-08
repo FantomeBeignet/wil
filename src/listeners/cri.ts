@@ -3,30 +3,33 @@ import { Listener, ListenerOptions } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
-export class DiEvent extends Listener {
+export class CriEvent extends Listener {
 	private conjugations = [
-		'dire',
-		'dis',
-		'dit',
-		'disons',
-		'dites',
-		'disent',
-		'dirai',
-		'dirait',
-		'diras',
-		'dirons',
-		'direz',
-		'diront',
-		'dimes',
-		'dites',
-		'dirent',
-		'disais',
-		'disait',
-		'disions',
-		'disiez',
-		'disaient',
-		'disant',
-		'disais'
+		'crier',
+		'crie',
+		'cries',
+		'crions',
+		'criez',
+		'crient',
+		'crierai',
+		'crieras',
+		'criera',
+		'crierons',
+		'crierez',
+		'crieront',
+		'criais',
+		'crias',
+		'cria',
+		'criâmes',
+		'criâtes',
+		'crièrent',
+		'criais',
+		'criait',
+		'criions',
+		'criiez',
+		'criiaient',
+		'criant',
+		'crié'
 	];
 
 	public constructor(context: Listener.Context, options: Listener.Options) {
