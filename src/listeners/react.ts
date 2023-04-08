@@ -18,7 +18,7 @@ export class QuoiEvent extends Listener {
 			const { content } = message;
 			const words = content.toLowerCase().split(' ');
 			if (words.includes('ratio')) return this.react(message, 'ratio');
-			if (words.includes('cheh')) return this.react(message, 'cheh');
+			if (words.includes('cheh')) return this.react(message, 'orge');
 			if (words.includes('titre')) return this.react(message, 'titre');
 		}
 		return null;
