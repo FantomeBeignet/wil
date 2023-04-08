@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
-import type { Message } from 'discord.js';
+import type { Message, TextChannel } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
 export class CriEvent extends Listener {
@@ -42,7 +42,7 @@ export class CriEvent extends Listener {
 
 	public run(message: Message): Promise<Message> | null {
 		if (
-			message.channel.id !== process.env.SERIOUS_CATEGORY &&
+			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
 			(message.content.toLowerCase().includes('cri') || message.content.toLowerCase().includes('cry'))
 		) {
