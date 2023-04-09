@@ -38,7 +38,7 @@ export class CouncilVoteEvent extends Listener {
 				case 'minus':
 					if (await redisClient.sismember(`votes:against:${voteId}`, author.name)) return null;
 					votesAgainst += 1;
-					if (await redisClient.smove(`votes:for:${voteId}`, `votes:against:${voteId}`, author.name)) votesAgainst -= 1;
+					if (await redisClient.smove(`votes:for:${voteId}`, `votes:against:${voteId}`, author.name)) votesFor -= 1;
 					else await redisClient.sadd(`votes:against:${voteId}`, author.name);
 					break;
 			}
