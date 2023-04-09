@@ -147,7 +147,7 @@ export class PasEntenduCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) => option.setName('content').setDescription('La dingz pas entendu').setRequired(true))
+				.addStringOption((option) => option.setName('content').setDescription('La dingz pas entendue').setRequired(true))
 		);
 	}
 
