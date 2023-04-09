@@ -2,6 +2,7 @@ import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Logger } from '@sapphire/plugin-logger';
 import '@sapphire/plugin-logger/register';
 import { GatewayIntentBits, REST, Routes } from 'discord.js';
+import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 
 const client = new SapphireClient({
 	caseInsensitiveCommands: true,
@@ -9,7 +10,18 @@ const client = new SapphireClient({
 		instance: new Logger({ level: LogLevel.Debug })
 	},
 	intents: [GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent],
-	loadMessageCommandListeners: true
+	loadMessageCommandListeners: true,
+	tasks: {
+		strategy: new ScheduledTaskRedisStrategy({
+			bull: {
+				connection: {
+					username: process.env.REDISUSER,
+					password: process.env.REDISPASSWORD,
+					db: 1
+				}
+			}
+		})
+	}
 });
 
 const main = async () => {
