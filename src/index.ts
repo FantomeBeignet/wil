@@ -3,6 +3,7 @@ import { Logger } from '@sapphire/plugin-logger';
 import '@sapphire/plugin-logger/register';
 import { GatewayIntentBits, REST, Routes } from 'discord.js';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
+import { redisClient } from './lib/redis';
 
 const client = new SapphireClient({
 	caseInsensitiveCommands: true,
@@ -14,12 +15,7 @@ const client = new SapphireClient({
 	tasks: {
 		strategy: new ScheduledTaskRedisStrategy({
 			bull: {
-				connection: {
-					port: parseInt(process.env.REDISPORT as string, 10),
-					username: process.env.REDISUSER,
-					password: process.env.REDISPASSWORD,
-					db: 1
-				}
+				connection: redisClient
 			}
 		})
 	}
