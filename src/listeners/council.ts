@@ -17,6 +17,8 @@ export class CouncilVoteEvent extends Listener {
 	public async run(interaction: Interaction) {
 		if (!interaction.isButton()) return null;
 		if (interaction.customId.startsWith('council')) {
+			const voteId = interaction.message.id;
+			console.log('voting for vote', voteId);
 			const [, mode] = interaction.customId.split('_');
 			const author = interaction.message.embeds[0].author as {
 				name: string;
@@ -28,18 +30,16 @@ export class CouncilVoteEvent extends Listener {
 			);
 			switch (mode) {
 				case 'plus':
-					if (await redisClient.sismember(`votes:for:${interaction.customId}`, author.name)) return null;
+					if (await redisClient.sismember(`votes:for:${voteId}`, author.name)) return null;
 					votesFor += 1;
-					if (await redisClient.smove(`votes:against:${interaction.customId}`, `votes:for:${interaction.customId}`, author.name))
-						votesAgainst -= 1;
-					else await redisClient.sadd(`votes:for:${interaction.customId}`, author.name);
+					if (await redisClient.smove(`votes:against:${voteId}`, `votes:for:${voteId}`, author.name)) votesAgainst -= 1;
+					else await redisClient.sadd(`votes:for:${voteId}`, author.name);
 					break;
 				case 'minus':
-					if (await redisClient.sismember(`votes:against:${interaction.customId}`, author.name)) return null;
+					if (await redisClient.sismember(`votes:against:${voteId}`, author.name)) return null;
 					votesAgainst += 1;
-					if (await redisClient.smove(`votes:for:${interaction.customId}`, `votes:against:${interaction.customId}`, author.name))
-						votesAgainst -= 1;
-					else await redisClient.sadd(`votes:against:${interaction.customId}`, author.name);
+					if (await redisClient.smove(`votes:for:${voteId}`, `votes:against:${voteId}`, author.name)) votesAgainst -= 1;
+					else await redisClient.sadd(`votes:against:${voteId}`, author.name);
 					break;
 			}
 			return interaction.update(makeCouncilEmbed(propal, author, votesFor, votesAgainst));
