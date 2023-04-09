@@ -15,6 +15,7 @@ const client = new SapphireClient({
 		strategy: new ScheduledTaskRedisStrategy({
 			bull: {
 				connection: {
+					port: parseInt(process.env.REDISPORT as string, 10),
 					username: process.env.REDISUSER,
 					password: process.env.REDISPASSWORD,
 					db: 1
