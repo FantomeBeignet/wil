@@ -13,12 +13,14 @@ export class QuoteCommand extends Command {
 	}
 
 	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-		registry.registerChatInputCommand((builder) =>
-			builder
-				.setName(this.name)
-				.setDescription(this.description)
-				.addUserOption((option) => option.setName('author').setDescription("L'auteur de la dingz").setRequired(true))
-				.addStringOption((option) => option.setName('content').setDescription('La dingz en question').setRequired(true))
+		registry.registerChatInputCommand(
+			(builder) =>
+				builder
+					.setName(this.name)
+					.setDescription(this.description)
+					.addUserOption((option) => option.setName('author').setDescription("L'auteur de la dingz").setRequired(true))
+					.addStringOption((option) => option.setName('content').setDescription('La dingz en question').setRequired(true)),
+			{ guildIds: [process.env.GUILD_ID as string] }
 		);
 	}
 
@@ -47,11 +49,13 @@ export class VuCommand extends Command {
 	}
 
 	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-		registry.registerChatInputCommand((builder) =>
-			builder
-				.setName(this.name)
-				.setDescription(this.description)
-				.addStringOption((option) => option.setName('content').setDescription('La dingz vue').setRequired(true))
+		registry.registerChatInputCommand(
+			(builder) =>
+				builder
+					.setName(this.name)
+					.setDescription(this.description)
+					.addStringOption((option) => option.setName('content').setDescription('La dingz vue').setRequired(true)),
+			{ guildIds: [process.env.GUILD_ID as string] }
 		);
 	}
 
@@ -79,11 +83,13 @@ export class EntenduCommand extends Command {
 	}
 
 	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-		registry.registerChatInputCommand((builder) =>
-			builder
-				.setName(this.name)
-				.setDescription(this.description)
-				.addStringOption((option) => option.setName('content').setDescription('La dingz entendue').setRequired(true))
+		registry.registerChatInputCommand(
+			(builder) =>
+				builder
+					.setName(this.name)
+					.setDescription(this.description)
+					.addStringOption((option) => option.setName('content').setDescription('La dingz entendue').setRequired(true)),
+			{ guildIds: [process.env.GUILD_ID as string] }
 		);
 	}
 
@@ -111,11 +117,13 @@ export class PasVuCommand extends Command {
 	}
 
 	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-		registry.registerChatInputCommand((builder) =>
-			builder
-				.setName(this.name)
-				.setDescription(this.description)
-				.addStringOption((option) => option.setName('content').setDescription('La dingz pas vue').setRequired(true))
+		registry.registerChatInputCommand(
+			(builder) =>
+				builder
+					.setName(this.name)
+					.setDescription(this.description)
+					.addStringOption((option) => option.setName('content').setDescription('La dingz pas vue').setRequired(true)),
+			{ guildIds: [process.env.GUILD_ID as string] }
 		);
 	}
 
@@ -143,11 +151,13 @@ export class PasEntenduCommand extends Command {
 	}
 
 	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-		registry.registerChatInputCommand((builder) =>
-			builder
-				.setName(this.name)
-				.setDescription(this.description)
-				.addStringOption((option) => option.setName('content').setDescription('La dingz pas entendue').setRequired(true))
+		registry.registerChatInputCommand(
+			(builder) =>
+				builder
+					.setName(this.name)
+					.setDescription(this.description)
+					.addStringOption((option) => option.setName('content').setDescription('La dingz pas entendue').setRequired(true)),
+			{ guildIds: [process.env.GUILD_ID as string] }
 		);
 	}
 
