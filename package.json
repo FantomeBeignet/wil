@@ -5,6 +5,7 @@
 		"@sapphire/plugin-logger": "^3.0.1",
 		"colorette": "^2.0.19",
 		"discord.js": "14.x",
+		"ioredis": "^5.3.1",
 		"tslib": "^2.5.0"
 	},
 	"devDependencies": {
