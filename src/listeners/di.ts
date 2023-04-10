@@ -43,7 +43,6 @@ export class DiEvent extends Listener {
 			message.author.id !== process.env.CLIENT_ID &&
 			(message.content.toLowerCase().includes('di') || message.content.toLowerCase().includes('dy'))
 		) {
-			console.log(message);
 			for (const w of message.content.toLowerCase().split(' ')) {
 				// iterate over the words and their index in the message text
 				const word = w.replace(/[&\/\\#,+\-()$~%.'":*?<>{}]+$/g, '');
