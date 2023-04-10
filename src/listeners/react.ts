@@ -20,10 +20,10 @@ export class QuoiEvent extends Listener {
 			if (words.includes('ratio')) return this.react(message, 'ratio');
 			if (words.includes('cheh')) return this.react(message, 'orge');
 			if (words.includes('titre')) return this.react(message, 'titre');
-			if (mentions.roles.has('1028963968309526618')) return message.react('🤝');
-			if (mentions.roles.has('1028958078101631046'))
+			if (mentions.roles.has(process.env.HANDSHAKE_ROLE as string)) return message.react('🤝');
+			if (mentions.roles.has(process.env.WILLIAM_ROLE as string))
 				return message.reply({ content: 'Mais qui est William ?', allowedMentions: { repliedUser: false } });
-			if (mentions.roles.has('1029027447318003764')) return this.react(message, 'orge');
+			if (mentions.roles.has(process.env.CHEH_ROLE as string)) return this.react(message, 'orge');
 		}
 		return null;
 	}
