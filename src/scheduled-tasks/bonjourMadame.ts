@@ -13,6 +13,7 @@ export class ManualMadameTask extends ScheduledTask {
 			const { client } = this.container;
 			const channel = client.channels.cache.get(process.env.MADAME_CHANNEL as string) as TextChannel;
 			if (!embed) {
+				this.container.logger.info('Postponing Bonjour Madame regular task');
 				this.container.tasks.create('manual', 'regular', 600_000);
 				return;
 			}
@@ -23,12 +24,14 @@ export class ManualMadameTask extends ScheduledTask {
 			const { client } = this.container;
 			const channel = client.channels.cache.get(process.env.MADAME_CHANNEL as string) as TextChannel;
 			if (!embed) {
+				this.container.logger.info('Postponing Bonjour Madame weekend task');
 				this.container.tasks.create('manual', 'weekend', 600_000);
 				return;
 			}
 			const message = await channel.send({ embeds: [embed] });
 			await message.crosspost();
 		}
+		this.container.logger.info('Ran manual Bonjour Madame task');
 	}
 }
 
@@ -45,11 +48,13 @@ export class RegularMadameTask extends ScheduledTask {
 		const { client } = this.container;
 		const channel = client.channels.cache.get(process.env.MADAME_CHANNEL as string) as TextChannel;
 		if (!embed) {
+			this.container.logger.info('Postponing Bonjour Madame regular task');
 			this.container.tasks.create('manual', 'regular', 600_000);
 			return;
 		}
 		const message = await channel.send({ embeds: [embed] });
 		await message.crosspost();
+		this.container.logger.info('Ran Bonjour Madame regular task');
 	}
 }
 
@@ -66,11 +71,13 @@ export class WeekendMadameTask extends ScheduledTask {
 		const { client } = this.container;
 		const channel = client.channels.cache.get(process.env.MADAME_CHANNEL as string) as TextChannel;
 		if (!embed) {
+			this.container.logger.info('Postponing Bonjour Madame weekend task');
 			this.container.tasks.create('manual', 'weekend', 600_000);
 			return;
 		}
 		const message = await channel.send({ embeds: [embed] });
 		await message.crosspost();
+		this.container.logger.info('Ran Bonjour Madame weenkend task');
 	}
 }
 
