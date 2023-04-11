@@ -4,7 +4,7 @@ import type { GuildEmoji, Message, MessageReaction, TextChannel } from 'discord.
 import { isTextChannel } from '../lib/utils';
 
 @ApplyOptions<ListenerOptions>({})
-export class QuoiEvent extends Listener {
+export class ReactEvent extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {
 			...options,
