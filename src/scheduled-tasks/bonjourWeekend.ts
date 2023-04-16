@@ -6,6 +6,7 @@ export class WeekendMadameTask extends ScheduledTask {
 	public constructor(context: ScheduledTask.Context, options: ScheduledTask.Options) {
 		super(context, {
 			...options,
+			name: 'WeekendBonjourMadame',
 			pattern: '30 10 * * 0,6'
 		});
 	}
