@@ -8,7 +8,7 @@ export class JMLPTask extends ScheduledTask {
 		super(context, {
 			...options,
 			name: 'JMLP',
-			pattern: '30 10 * * 1-5'
+			pattern: '0 8,12,20 * * *'
 		});
 	}
 
