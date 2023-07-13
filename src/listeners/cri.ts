@@ -54,7 +54,7 @@ export class CriEvent extends Listener {
 					// if word includes "cri" or "cry"
 					if (!this.conjugations.includes(word)) {
 						const toReply = word.slice(index + 3);
-						if (toReply.length > 2 && toReply.length < 12) {
+						if (toReply.length > 4 && toReply.length < 12) {
 							return message.reply({ content: toReply, allowedMentions: { repliedUser: false } });
 						}
 					}
