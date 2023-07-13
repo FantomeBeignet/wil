@@ -53,7 +53,8 @@ export class CriEvent extends Listener {
 				if (index !== -1) {
 					// if word includes "cri" or "cry"
 					if (!this.conjugations.includes(word)) {
-						const toReply = word.slice(index + 3);
+						const bold = require("discord.js");
+						const toReply = bold(word.slice(index + 3));
 						if (toReply.length > 4 && toReply.length < 12) {
 							return message.reply({ content: toReply, allowedMentions: { repliedUser: false } });
 						}
