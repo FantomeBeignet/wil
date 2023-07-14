@@ -1,6 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
-import type { Message, TextChannel } from 'discord.js';
+import type { Message, TextChannel} from 'discord.js';
+import {bold } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
 export class CriEvent extends Listener {
@@ -53,8 +54,8 @@ export class CriEvent extends Listener {
 				if (index !== -1) {
 					// if word includes "cri" or "cry"
 					if (!this.conjugations.includes(word)) {
-						const toReply = word.slice(index + 3);
-						if (toReply.length > 2 && toReply.length < 12) {
+						const toReply = bold(word.slice(index + 3)).toUpperCase();
+						if (toReply.length > 4 && toReply.length < 12) {
 							return message.reply({ content: toReply, allowedMentions: { repliedUser: false } });
 						}
 					}
