@@ -58,7 +58,7 @@ export class CriEvent extends Listener {
             const wordToReply = word.slice(index+3); 
             if (wordToreply.length > 4 && wordToReply < 12){
               // replies with the uppercase message
-						  return message.reply( {content: wordToReply.toUpperCase(), allowedMentions: {repliedUser: false }})
+						  return message.reply( {content: bold(wordToReply).toUpperCase(), allowedMentions: {repliedUser: false }})
             }
 					}
 				}
