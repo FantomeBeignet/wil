@@ -56,7 +56,7 @@ export class CriEvent extends Listener {
 					if (!this.conjugations.includes(word)) {
             // +3 to get beyond the "cri" or "cry"
             const wordToReply = word.slice(index+3); 
-            if (wordToreply.length > 3 && wordToReply < 12){
+            if (wordToreply.length > 4 && wordToReply < 12){
               // replies with the uppercase message
 						  return message.reply( {content: wordToReply.toUpperCase(), allowedMentions: {repliedUser: false }})
             }
