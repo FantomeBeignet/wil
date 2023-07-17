@@ -4,7 +4,7 @@ import type { Message, TextChannel } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
 export class DiEvent extends Listener {
-	private conjugations = [
+	private blacklist = [
 		'dire',
 		'dis',
 		'dit',
@@ -26,7 +26,8 @@ export class DiEvent extends Listener {
 		'disiez',
 		'disaient',
 		'disant',
-		'disais'
+		'disais',
+		'discord'
 	];
 
 	public constructor(context: Listener.Context, options: Listener.Options) {
@@ -49,7 +50,7 @@ export class DiEvent extends Listener {
 				const index = Math.max(word.indexOf('di'), word.indexOf('dy'));
 				if (index !== -1) {
 					// if word includes "di" or "dy"
-					if (!this.conjugations.includes(word)) {
+					if (!this.blacklist.includes(word)) {
 						const toReply = word.slice(index + 2);
 						if (toReply.length > 4 && toReply.length < 12) {
 							return message.reply({ content: toReply, allowedMentions: { repliedUser: false } });

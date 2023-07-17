@@ -5,7 +5,7 @@ import { bold } from 'discord.js';
 
 @ApplyOptions<ListenerOptions>({})
 export class CriEvent extends Listener {
-	private conjugations = [
+	private blacklist = [
 		'crier',
 		'crie',
 		'cries',
@@ -53,7 +53,7 @@ export class CriEvent extends Listener {
 				const index = Math.max(word.indexOf('cri'), word.indexOf('cry'));
 				if (index !== -1) {
 					// if word includes "cri" or "cry"
-					if (!this.conjugations.includes(word)) {
+					if (!this.blacklist.includes(word)) {
 						// +3 to get beyond the "cri" or "cry"
 						const wordToReply = word.slice(index + 3);
 						if (wordToReply.length > 4 && wordToReply.length < 12) {
