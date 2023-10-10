@@ -20,6 +20,12 @@ export class QuoiEvent extends Listener {
 			words.some((word) => ['quoi', 'koi', 'kois', 'quoient', 'koient'].includes(word))
 		) {
 			return message.reply({ content: 'feur', allowedMentions: { repliedUser: false } });
+		} else if (
+			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
+			message.author.id !== process.env.CLIENT_ID &&
+			words.includes('pourquoi')
+		) {
+			return message.reply({ content: 'Parce que feur', allowedMentions: { repliedUser: false } });
 		}
 		return null;
 	}
