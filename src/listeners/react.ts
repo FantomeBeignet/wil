@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
 import type { GuildEmoji, Message, MessageReaction, TextChannel } from 'discord.js';
-import { isTextChannel } from '../lib/utils';
+import { isTextChannel, splitWords } from '../lib/utils';
 
 @ApplyOptions<ListenerOptions>({})
 export class ReactEvent extends Listener {
@@ -16,7 +16,7 @@ export class ReactEvent extends Listener {
 	public run(message: Message): Promise<Message | MessageReaction> | Promise<void> | undefined | null {
 		if ((message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY && message.author.id !== process.env.CLIENT_ID) {
 			const { content, mentions } = message;
-			const words = content.toLowerCase().split(' ');
+			const words = splitWords(content);
 			if (words.includes('ratio')) return this.react(message, 'ratio');
 			if (words.includes('cheh')) return this.react(message, 'orge');
 			if (words.includes('titre')) return this.react(message, 'titre');

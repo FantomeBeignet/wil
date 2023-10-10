@@ -1,6 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
 import type { Message, TextChannel } from 'discord.js';
+import { splitWords } from '../lib/utils';
 
 @ApplyOptions<ListenerOptions>({})
 export class QuoiEvent extends Listener {
@@ -13,10 +14,7 @@ export class QuoiEvent extends Listener {
 	}
 
 	public run(message: Message): Promise<Message> | null {
-		const words = message.content
-			.toLowerCase()
-			.split(' ')
-			.map((word) => word.replace(/^[`!?\.,\(\)\[\]\{\};:'"\/]+|[`!?\.,\(\)\[\]\{\};:'"\/]+$/g, ''));
+		const words = splitWords(message.content)
 		const rand = Math.random();
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&

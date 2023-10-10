@@ -38,3 +38,9 @@ export function makeCouncilEmbed(propal: string, author: { name: string; iconURL
 	);
 	return { embeds: [embed], components: [buttons] };
 }
+
+export const splitWords = (sentence: string) =>
+	sentence
+		.toLowerCase()
+		.split(' ')
+		.map((word) => word.replace(/^[`!?\.,\(\)\[\]\{\};:'"\/]+|[`!?\.,\(\)\[\]\{\};:'"\/]+$/g, ''));

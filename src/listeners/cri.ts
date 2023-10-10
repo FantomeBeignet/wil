@@ -2,6 +2,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
 import type { Message, TextChannel } from 'discord.js';
 import { bold } from 'discord.js';
+import { splitWords } from '../lib/utils';
 
 @ApplyOptions<ListenerOptions>({})
 export class CriEvent extends Listener {
@@ -47,9 +48,9 @@ export class CriEvent extends Listener {
 			message.author.id !== process.env.CLIENT_ID &&
 			(message.content.toLowerCase().includes('cri') || message.content.toLowerCase().includes('cry'))
 		) {
-			for (const w of message.content.toLowerCase().split(' ')) {
+			const words = splitWords(message.content);
+			for (const word of words) {
 				// iterate over the words and their index in the message text
-				const word = w.replace(/[&\/\\#,+\-()$~%.'":*?<>{}]+$/g, '');
 				const index = Math.max(word.indexOf('cri'), word.indexOf('cry'));
 				if (index !== -1) {
 					// if word includes "cri" or "cry"

@@ -1,6 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
 import type { Message, TextChannel } from 'discord.js';
+import { splitWords } from '../lib/utils';
 
 @ApplyOptions<ListenerOptions>({})
 export class DiEvent extends Listener {
@@ -44,9 +45,9 @@ export class DiEvent extends Listener {
 			message.author.id !== process.env.CLIENT_ID &&
 			(message.content.toLowerCase().includes('di') || message.content.toLowerCase().includes('dy'))
 		) {
-			for (const w of message.content.toLowerCase().split(' ')) {
+			const words = splitWords(message.content);
+			for (const word of words) {
 				// iterate over the words and their index in the message text
-				const word = w.replace(/[&\/\\#,+\-()$~%.'":*?<>{}]+$/g, '');
 				const index = Math.max(word.indexOf('di'), word.indexOf('dy'));
 				if (index !== -1) {
 					// if word includes "di" or "dy"
