@@ -13,10 +13,11 @@ export class QuoiEvent extends Listener {
 	}
 
 	public run(message: Message): Promise<Message> | null {
+		const words = message.content.toLowerCase().split(' ');
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
-			message.content.toLowerCase().includes('quoi')
+			words.some((word) => ['quoi', 'koi', 'kois', 'quoient', 'koient'].includes(word))
 		) {
 			return message.reply({ content: 'feur', allowedMentions: { repliedUser: false } });
 		}
