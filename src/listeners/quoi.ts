@@ -13,7 +13,10 @@ export class QuoiEvent extends Listener {
 	}
 
 	public run(message: Message): Promise<Message> | null {
-		const words = message.content.toLowerCase().split(' ');
+		const words = message.content
+			.toLowerCase()
+			.split(' ')
+			.map((word) => word.replace(/^[`!?\.,\(\)\[\]\{\};:'"\/]+|[`!?\.,\(\)\[\]\{\};:'"\/]+$/g, ''));
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
