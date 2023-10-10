@@ -17,10 +17,12 @@ export class QuoiEvent extends Listener {
 			.toLowerCase()
 			.split(' ')
 			.map((word) => word.replace(/^[`!?\.,\(\)\[\]\{\};:'"\/]+|[`!?\.,\(\)\[\]\{\};:'"\/]+$/g, ''));
+		const rand = Math.random();
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
-			words.some((word) => ['quoi', 'koi', 'kois', 'quoient', 'koient'].includes(word))
+			words.some((word) => ['quoi', 'koi', 'kois', 'quoient', 'koient'].includes(word)) &&
+			rand <= 0.69
 		) {
 			return message.reply({ content: 'feur', allowedMentions: { repliedUser: false } });
 		} else if (
