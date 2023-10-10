@@ -5,7 +5,7 @@ import { redisClient } from '../lib/redis';
 import { splitWords } from '../lib/utils';
 
 @ApplyOptions<ListenerOptions>({})
-export class CamionEvent extends Listener {
+export class BLEvent extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {
 			...options,
