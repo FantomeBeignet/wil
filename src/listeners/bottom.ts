@@ -20,7 +20,7 @@ export class BLEvent extends Listener {
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
-			words.length > 0
+			(words.length > 0 || colonThree)
 		) {
 			let matches: RegExpExecArray[] = [];
 			let match = undefined;
