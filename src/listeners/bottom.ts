@@ -21,12 +21,13 @@ export class BLEvent extends Listener {
 			message.author.id !== process.env.CLIENT_ID &&
 			words.length > 0
 		) {
-			const re = /h+i+/g;
 			let matches: RegExpExecArray[] = [];
 			let match = undefined;
 			words.map((word) => {
 				const localMatches: RegExpExecArray[] = [];
+				const re = /h+i+/g;
 				while ((match = re.exec(word)) !== null) {
+					console.log(match);
 					if (match.index === 0 || match.index === localMatches[-1].index + localMatches[-1][0].length) {
 						localMatches.push(match);
 					}
