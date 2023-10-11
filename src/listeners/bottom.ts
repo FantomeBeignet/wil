@@ -36,7 +36,7 @@ export class BLEvent extends Listener {
 				}
 				matches = [...matches, ...localMatches];
 			});
-			redisClient.incrby(`bottomLeaderbord:${message.author.id}`, matches.length);
+			redisClient.incrby(`bottomLeaderboard:${message.author.id}`, matches.length);
 		}
 		return null;
 	}
