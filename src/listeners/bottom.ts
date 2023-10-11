@@ -16,6 +16,7 @@ export class BLEvent extends Listener {
 
 	public run(message: Message): Promise<Message> | null {
 		const words = splitWords(message.content).filter((word) => word.match(/^h+i+/));
+		const colonThree = message.content.toLowerCase().match(/:3/g)?.length ?? 0;
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
@@ -36,7 +37,7 @@ export class BLEvent extends Listener {
 				}
 				matches = [...matches, ...localMatches];
 			});
-			redisClient.incrby(`bottomLeaderboard:${message.author.id}`, matches.length);
+			redisClient.incrby(`bottomLeaderboard:${message.author.id}`, matches.length + colonThree);
 		}
 		return null;
 	}
