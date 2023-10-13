@@ -17,10 +17,11 @@ export class BLEvent extends Listener {
 	public run(message: Message): Promise<Message> | null {
 		const words = splitWords(message.content).filter((word) => word.match(/^h+i+/));
 		const colonThree = message.content.toLowerCase().match(/:3/g)?.length ?? 0;
+		const isForMe = message.content.match(/:isForMe:/g)?.length ?? 0
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
-			(words.length > 0 || colonThree)
+			(words.length > 0 || colonThree || isForMe)
 		) {
 			let matches: RegExpExecArray[] = [];
 			let match = undefined;
@@ -37,7 +38,7 @@ export class BLEvent extends Listener {
 				}
 				matches = [...matches, ...localMatches];
 			});
-			redisClient.hincrby('bottomLeaderboard', message.author.id, matches.length + colonThree * 3);
+			redisClient.hincrby('bottomLeaderboard', message.author.id, matches.length + isForMe * 2 + colonThree * 3);
 		}
 		return null;
 	}
