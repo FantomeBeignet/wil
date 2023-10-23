@@ -20,7 +20,7 @@ export class BLEvent extends Listener {
 		const isForMe = message.content.match(/:isForMe:/g)?.length ?? 0;
 		const pleading = message.content.match(/:pleading_face:/g)?.length ?? 0;
 		const flushed = message.content.match(/:flushed:/g)?.length ?? 0;
-		const pointrl = message.content.match(/:point_right:\s*:point_left:/g) ?? 0;
+		const pointrl = message.content.match(/:point_right:\s*:point_left:/g)?.length ?? 0;
 		if (
 			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
 			message.author.id !== process.env.CLIENT_ID &&
@@ -41,7 +41,11 @@ export class BLEvent extends Listener {
 				}
 				matches = [...matches, ...localMatches];
 			});
-			redisClient.hincrby('bottomLeaderboard', message.author.id, matches.length + isForMe * 2 + colonThree * 3 + pleading * 2 + flushed * 2 + pointrl * 3);
+			redisClient.hincrby(
+				'bottomLeaderboard',
+				message.author.id,
+				matches.length + isForMe * 2 + colonThree * 3 + pleading * 2 + flushed * 2 + pointrl * 3
+			);
 		}
 		return null;
 	}
