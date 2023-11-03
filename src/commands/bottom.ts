@@ -27,8 +27,8 @@ export class BottomCommand extends Command {
 			.sort((a, b) => b.score - a.score)
 			.map((s, i) =>
 				embed.addFields({
-					name: `${s.name}`,
-					value: `${i === 0 ? ':first_place: ' : i === 1 ? ':second_place: ' : i === 2 ? ':third_place: ' : ''}${s.score} pts`,
+					name: `${i === 0 ? ':first_place: ' : i === 1 ? ':second_place: ' : i === 2 ? ':third_place: ' : ''}${s.name}`,
+					value: `${s.score} pts`,
 					inline: false
 				})
 			);
