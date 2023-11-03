@@ -27,7 +27,9 @@ export class BottomCommand extends Command {
 			.sort((a, b) => b.score - a.score)
 			.map((s, i) =>
 				embed.addFields({
-					name: `${i === 0 ? ':isForMe: ' : i === 1 ? ':uwudevoir: ' : i === 2 ? ':flushed: ' : ''}${s.name}`,
+					name: `${
+						i === 0 ? '<:isForMe:1029050608818327552> ' : i === 1 ? '<:uwudevoir:1028994053796278292> ' : i === 2 ? ':flushed: ' : ''
+					}${s.name}`,
 					value: `${s.score} pts`,
 					inline: false
 				})
