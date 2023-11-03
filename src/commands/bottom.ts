@@ -23,7 +23,15 @@ export class BottomCommand extends Command {
 			})
 		);
 		const embed = new EmbedBuilder().setTitle('Bottom Leaderboard').setDescription('Qui est le plus gros bottom ?').setTimestamp();
-		formattedScores.sort((a, b) => b.score - a.score).map((s) => embed.addFields({ name: s.name, value: `${s.score} pts`, inline: false }));
+		formattedScores
+			.sort((a, b) => b.score - a.score)
+			.map((s, i) =>
+				embed.addFields({
+					name: `${s.name}`,
+					value: `${i === 0 ? ':first_place: ' : i === 1 ? ':second_place: ' : i === 2 ? ':third_place: ' : ''}${s.score} pts`,
+					inline: false
+				})
+			);
 		return interaction.reply({
 			embeds: [embed]
 		});
