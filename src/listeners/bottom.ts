@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, ListenerOptions } from '@sapphire/framework';
-import type { Message, TextChannel } from 'discord.js';
+import type { Message } from 'discord.js';
 import { redisClient } from '../lib/redis';
 import { splitWords } from '../lib/utils';
 
@@ -21,11 +21,7 @@ export class BLEvent extends Listener {
 		const pleading = message.content.match(/:pleading_face:/g)?.length ?? 0;
 		const flushed = message.content.match(/:flushed:/g)?.length ?? 0;
 		const pointrl = message.content.match(/:point_right:\s*:point_left:/g)?.length ?? 0;
-		if (
-			(message.channel as TextChannel).parent?.id !== process.env.SERIOUS_CATEGORY &&
-			message.author.id !== process.env.CLIENT_ID &&
-			(words.length > 0 || colonThree || isForMe)
-		) {
+		if (message.author.id !== process.env.CLIENT_ID && (words.length > 0 || colonThree || isForMe)) {
 			let matches: RegExpExecArray[] = [];
 			let match = undefined;
 			words.map((word) => {
