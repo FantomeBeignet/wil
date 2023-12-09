@@ -18,9 +18,9 @@ export class BLEvent extends Listener {
 		const words = splitWords(message.content).filter((word) => word.match(/^h+i+/));
 		const colonThree = message.content.toLowerCase().match(/:3/g)?.length ?? 0;
 		const isForMe = message.content.match(/:isForMe:/g)?.length ?? 0;
-		const pleading = message.content.match(/:pleading_face:/g)?.length ?? 0;
-		const flushed = message.content.match(/:flushed:/g)?.length ?? 0;
-		const pointrl = message.content.match(/:point_right:\s*:point_left:/g)?.length ?? 0;
+		const pleading = message.content.match(/🥺/g)?.length ?? 0;
+		const flushed = message.content.match(/😳/g)?.length ?? 0;
+		const pointrl = message.content.match(/👉\s*👈/g)?.length ?? 0;
 		if (message.author.id !== process.env.CLIENT_ID && (words.length > 0 || colonThree || isForMe)) {
 			let matches: RegExpExecArray[] = [];
 			let match = undefined;
